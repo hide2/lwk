@@ -25,6 +25,8 @@ app:get('/:wiki', function(params)
 		if wiki then
 			wiki = wiki:read("*a")
 			wiki = string.gsub(wiki, '\r\n', '\\n')
+			wiki = string.gsub(wiki, '<', '\\<')
+			wiki = string.gsub(wiki, '>', '\\>')
 			wiki = '"'..string.gsub(wiki, '"', '\\"')..'"'
 			wiki = string.gsub(template, '@content', wiki)
 			return wiki

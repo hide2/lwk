@@ -8,7 +8,7 @@ Start server by `luvit wiki.lua`, open browser and visit http://your_host/How-To
 
 `wiki.lua`
 
-```
+```lua
 local app = require("./luz/app").app:new()
 
 app:get('/', function()
@@ -25,6 +25,8 @@ app:get('/:wiki', function(params)
 		if wiki then
 			wiki = wiki:read("*a")
 			wiki = string.gsub(wiki, '\r\n', '\\n')
+			wiki = string.gsub(wiki, '<', '\\<')
+			wiki = string.gsub(wiki, '>', '\\>')
 			wiki = '"'..string.gsub(wiki, '"', '\\"')..'"'
 			wiki = string.gsub(template, '@content', wiki)
 			return wiki
@@ -40,7 +42,7 @@ p("Http Server listening at http://0.0.0.0:5555/")
 
 `template.html`
 
-```
+```html
 <!doctype html>
 <html>
 <head>
