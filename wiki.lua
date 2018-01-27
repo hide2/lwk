@@ -24,6 +24,6 @@ app:get('/:wiki', function(params)
 		end
 	end
 end)
-app:listen({port=8080})
+app:listen({port=5555})
 
-p("Http Server listening at http://0.0.0.0:8080/")
+p("Http Server listening at http://0.0.0.0:5555/")
