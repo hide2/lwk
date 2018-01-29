@@ -71,7 +71,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 </head>
 <body>
-<div id="content" class="markdown-body"></div>
+<div id="content" class="markdown-body" style="position:absolute;margin-top:20px;margin-bottom:20px;"></div>
 <script>
 marked.setOptions({
 renderer: new marked.Renderer(),
@@ -82,6 +82,19 @@ hljs.configure({
   classPrefix: ''
 })
 hljs.initHighlighting();
+function detectOS() {
+  var sUserAgent = navigator.userAgent;
+  var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+  var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel");
+  if (isWin) return "Win";
+  if (isMac) return "Mac";
+  return "other";
+}
+if(detectOS() == "Win" || detectOS() == "Mac") {
+  document.getElementById('content').style.width="1000px";
+  document.getElementById('content').style.left="25%";
+}
+
 </script>
 </body>
 </html>
